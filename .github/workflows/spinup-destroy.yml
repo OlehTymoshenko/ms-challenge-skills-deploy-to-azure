@@ -22,7 +22,7 @@ jobs:
       - name: Azure login
         uses: azure/login@v1
         with:
-          creds: ${{ secrets.AZURE.CREDENTIALS }}
+          creds: ${{ secrets.AZURE_CREDENTIALS }}
       
       - name: Create Azure resource group
         if: success()
