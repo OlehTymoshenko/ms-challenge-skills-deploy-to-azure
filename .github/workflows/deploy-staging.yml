@@ -5,15 +5,24 @@ on:
     types: [labeled]
 env:
   IMAGE_REGISTRY_URL: ghcr.io
-  DOCKER_IMAGE_NAME: OlehTymoshenko-azure-ttt 
-  AZURE_WEBAPP_NAME: OlehTymoshenko-ttt-app
+  DOCKER_IMAGE_NAME: olehtymoshenko-azure-ttt 
+  AZURE_WEBAPP_NAME: olehtymoshenko-ttt-app
 
 jobs:
   build:
     if: contains(github.event.pull_request.labels.*.name, 'stage')
     runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        os: [ubuntu-latest]
+        node-version: [16.x]
     steps:
       - uses: actions/checkout@v3
+      
+      - name: Use Node.js ${{ matrix.node-version }}
+        uses: actions/setup-node@v3
+        with:
+          node-version: ${{ matrix.node-version }}
       
       - name: npm install and build webpack
         run: |
