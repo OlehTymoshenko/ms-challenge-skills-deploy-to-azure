@@ -5,8 +5,8 @@ on:
     types: [labeled]
 env:
   IMAGE_REGISTRY_URL: ghcr.io
-  DOCKER_IMAGE_NAME: OlehTymoshenko-azure-ttt 
-  AZURE_WEBAPP_NAME: OlehTymoshenko-ttt-app
+  DOCKER_IMAGE_NAME: olehtymoshenko-azure-ttt 
+  AZURE_WEBAPP_NAME: olehtymoshenko-ttt-app
 
 jobs:
   build:
