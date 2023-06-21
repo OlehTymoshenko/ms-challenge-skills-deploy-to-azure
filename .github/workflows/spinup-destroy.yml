@@ -29,15 +29,30 @@ jobs:
         run: |
           az group create --location ${{env.AZURE_LOCATION}} --name ${{env.AZURE_RESOURCE_GROUP}} --subscription ${{secrets.AZURE_SUBSCRIPTION_ID}}
       
+      - name: Sleep for 3 seconds
+        if: success()
+        run: sleep 3s
+        shell: bash
+      
       - name: Create Azure app service plan
         if: success()
         run: |
           az appservice plan create --resource-group ${{env.AZURE_RESOURCE_GROUP}} --name ${{env.AZURE_APP_PLAN}} --is-linux --location ${{env.AZURE_LOCATION}} --sku F1 --subscription ${{secrets.AZURE_SUBSCRIPTION_ID}}
       
+      - name: Sleep for 3 seconds
+        if: success()
+        run: sleep 3s
+        shell: bash
+      
       - name: Create webapp resource
         if: success()
         run: |
           az webapp create --resource-group ${{ env.AZURE_RESOURCE_GROUP }} --plan ${{ env.AZURE_APP_PLAN }} --name ${{ env.AZURE_WEBAPP_NAME }}  --deployment-container-image-name nginx --subscription ${{secrets.AZURE_SUBSCRIPTION_ID}}
+
+      - name: Sleep for 3 seconds
+        if: success()
+        run: sleep 3s
+        shell: bash
 
       - name: Configure webapp to use GHCR
         if: success()
