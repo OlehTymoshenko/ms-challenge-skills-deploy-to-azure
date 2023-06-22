@@ -1,8 +1,9 @@
 name: Deploy to production
 
 on:
-  branches:
-    - main
+  push:
+    branches:
+      - main
 env:
   IMAGE_REGISTRY_URL: ghcr.io
   DOCKER_IMAGE_NAME: olehtymoshenko-azure-ttt 
